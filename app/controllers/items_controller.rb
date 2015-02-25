@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :refresh_bid_amount]
 
   # GET /items
   def index
@@ -14,6 +14,7 @@ class ItemsController < ApplicationController
   # GET /items/new
   def new
     @item = Item.new
+
   end
 
   # GET /items/1/edit
@@ -25,7 +26,7 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
 
     if @item.save
-      redirect_to @item, notice: 'Item was successfully created.'
+      redirect_to items_path, notice: 'Item was successfully created.'
     else
       render :new
     end
@@ -38,6 +39,10 @@ class ItemsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def refresh_bid_amount
+
   end
 
   # DELETE /items/1
