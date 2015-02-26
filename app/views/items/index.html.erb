@@ -1,36 +1,38 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Items</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Starting Price</th>
-      <th>Highest Bid</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div id="featured">
+  <%=image_tag 'bidding-wars.jpg'  %>
+  <%=image_tag 'bidding-wars.jpg'  %>
+  <%=image_tag 'bidding-wars.jpg'  %>
+</div>
+<h1>Bidding Battle Royale</h1>
 
-  <tbody>
+<div class="row">
+<h3 class="small-3 columns">Name</h3>
+<h3 class="small-3 columns">Description</h3>
+<h3 class="small-3 columns">Starting Price</h3>
+<h3 class="small-3 columns">Highest Bid</h3>
+</div>
+
     <% @items.each do |item| %>
-    <tr>
-      <td><%= image_tag item.image_url, class: "thumbnail" %></td>
-      <td><%= item.name %></td>
-      <td><%= item.description %></td>
-      <td><%= number_to_currency(item.starting_price) %></td>
-      <td><%= number_to_currency(item.highest_bid_amount) %></td>
-      <td><%= link_to 'Bid!', item, class: "button tiny" %></td>
-      <td><%= link_to 'Edit', edit_item_path(item), class: "button tiny" %></td>
-      <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, class: "button tiny alert" %></td>
-    </tr>
+    <div class="row">
+      <div class= "small-3 columns">
+        <p><%= image_tag item.image_url, class: "thumbnail", width: "150"%></p>
+        <p><%= item.name %></p>
+      </div>
+      <p class="small-3 columns"><%= item.description %>
+      <p class="small-3 columns"><%= number_to_currency(item.starting_price) %></p>
+      <div class="small-3 columns">
+        <p><%= number_to_currency(item.highest_bid_amount) %></p>
+        <%= link_to 'Bid!', item, class: "button tiny" %>
+        <%= link_to 'Edit', edit_item_path(item), class: "button tiny" %>
+        <%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, class: "button tiny alert" %>
+    </div>
+    </div>
     <% end %>
-  </tbody>
-</table>
 
 <br>
 
-<%= link_to 'New Item', new_item_path, class: "button tiny success", remote: true %>
+<%= link_to 'New Item', new_item_path, class: "button tiny success" %>
 <div id="new-item-form"></div>
